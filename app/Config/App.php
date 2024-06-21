@@ -16,6 +16,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
+    // 240621 kerstie
     public string $baseURL = 'http://localhost/';
 
     /**
@@ -40,6 +41,7 @@ class App extends BaseConfig
      * something else. If you have configured your web server to remove this file
      * from your site URIs, set this variable to an empty string.
      */
+    // 240621 kerstie
     public string $indexPage = '';
 
     /**
