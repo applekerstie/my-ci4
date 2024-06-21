@@ -6,6 +6,7 @@
 <body>
     <h1>Posts</h1>
     <a href="/posts/create">Create Post</a>
+    <a href="/logout">logout</a>
     <ul>
         <?php foreach ($posts as $post): ?>
             <li>
