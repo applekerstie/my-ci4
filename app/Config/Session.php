@@ -7,7 +7,8 @@ use CodeIgniter\Session\Handlers\BaseHandler;
 use CodeIgniter\Session\Handlers\FileHandler;
 
 // 240621 kerstie
-use CodeIgniter\Session\Handlers\DatabaseHandler;
+//use CodeIgniter\Session\Handlers\DatabaseHandler;
+use CodeIgniter\Session\Handlers\RedisHandler;
 
 class Session extends BaseConfig
 {
@@ -26,7 +27,8 @@ class Session extends BaseConfig
      */
     // 240621 kerstie
     //public string $driver = FileHandler::class;
-    public string $driver = DatabaseHandler::class;
+    //public string $driver = DatabaseHandler::class;
+    public string $driver = RedisHandler::class;
 
     /**
      * --------------------------------------------------------------------------
@@ -63,8 +65,10 @@ class Session extends BaseConfig
      * IMPORTANT: You are REQUIRED to set a valid save path!
      */
     // 240621 kerstie
+    public $savePath = 'tcp://172.17.0.4:6379'; // Redis 주소와 포트 설정
+
     //public string $savePath = WRITEPATH . 'session';
-    public string $savePath = 'ci_sessions';
+    //public string $savePath = 'ci_sessions';
     /*
     CREATE TABLE `ci_sessions` (
         `id` varchar(128) NOT NULL,

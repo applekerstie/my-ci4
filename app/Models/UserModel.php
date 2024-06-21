@@ -15,18 +15,6 @@ class UserModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-
-    /*
-    protected function hashPassword(array $data)
-    {
-        if (! isset($data['data']['password'])) return $data;
-
-        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-        return $data;
-    }
-    */
-
-
     // 사용자 로그인을 위한 메서드
     public function login($username, $password)
     {
