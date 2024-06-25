@@ -28,6 +28,7 @@ class AuthController extends Controller
         // 사용자 로그인 확인
         $user = $userModel->login($username, $password);
 
+        /*
         if ($user) {
             // 세션에 사용자 정보 저장 (로그인 세션 유지)
             $session = session();
@@ -40,16 +41,48 @@ class AuthController extends Controller
             // 로그인 실패 처리 (예: 다시 로그인 폼으로 리다이렉트)
             return redirect()->back()->with('error', '로그인 실패: 사용자 이름 또는 비밀번호가 잘못되었습니다.');
         }
+        */
+        // 240623 kerstie
+        if ($user) {
+            $token = $userModel->createJWT($user);
+            return $this->response->setJSON(['token' => $token]);
+        } else {
+            return $this->response->setJSON(['error' => '로그인 실패: 사용자 이름 또는 비밀번호가 잘못되었습니다.'], 401);
+        }
     }
+
+    /*
+    public function profile()
+    {
+        $authHeader = $this->request->getHeader('Authorization');
+        if ($authHeader) {
+            $token = $authHeader->getValue();
+            $userModel = new UserModel();
+            $userData = $userModel->verifyJWT($token);
+
+            if ($userData) {
+                return $this->response->setJSON($userData);
+            } else {
+                return $this->response->setJSON(['error' => '인증 실패'], 401);
+            }
+        } else {
+            return $this->response->setJSON(['error' => '토큰이 제공되지 않았습니다.'], 401);
+        }
+    }
+    */
 
     // 로그아웃 처리
     public function logout()
     {
+        /*
         // 세션을 파기하여 로그아웃
         $session = session();
         $session->destroy();
 
         // 로그아웃 후 리다이렉트
         return redirect()->to('/');
+        */
+        // 240623 kerstie
+        return $this->response->setJSON(['message' => 'Logged out successfully.']);
     }
 }

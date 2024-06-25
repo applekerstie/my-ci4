@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Login</h1>
+    
+    <?php /*
+    // 240623 kerstie
     <?php if(session()->getFlashdata('error')): ?>
         <div><?= session()->getFlashdata('error') ?></div>
     <?php endif; ?>
@@ -17,5 +20,35 @@
         <input type="password" id="password" name="password" required>
         <button type="submit">Login</button>
     </form>
+    */ ?>
+
+    <form id="loginForm" action="/login/auth" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+    <div id="token"></div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    document.getElementById('token').textContent = 'Token: ' + data.token;
+                    localStorage.setItem('jwt_token', data.token); // 토큰을 로컬 스토리지에 저장
+                } else {
+                    alert(data.error);
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
