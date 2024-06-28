@@ -27,6 +27,15 @@ class PostController extends Controller
         $query = $db->query('SELECT * FROM posts');
         */
 
+        
+        // 240625 kerstie
+        $userModel = new \App\Models\UserModel();
+        $userData = $userModel->verifyJWT();
+        if (!$userData) {
+            return redirect()->to('/login')->with('error', '로그인이 필요합니다.');
+        }
+
+
         $query = $this->db->query('SELECT * FROM posts');
 
         $data['posts'] = $query->getResultArray();

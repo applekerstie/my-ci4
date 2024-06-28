@@ -45,9 +45,18 @@ class AuthController extends Controller
         // 240623 kerstie
         if ($user) {
             $token = $userModel->createJWT($user);
-            return $this->response->setJSON(['token' => $token]);
+            
+            // 240625 kerstie
+            //return $this->response->setJSON(['token' => $token]);
+            setcookie('jwt', $token, time() + 3600, '/', '', true, true); // HTTP Only 쿠키 설정
+            return redirect()->to('/posts');
+
         } else {
-            return $this->response->setJSON(['error' => '로그인 실패: 사용자 이름 또는 비밀번호가 잘못되었습니다.'], 401);
+
+            // 240625 kerstie
+            //return $this->response->setJSON(['error' => '로그인 실패: 사용자 이름 또는 비밀번호가 잘못되었습니다.'], 401);
+            return redirect()->back()->with('error', '로그인 실패: 사용자 이름 또는 비밀번호가 잘못되었습니다.');
+
         }
     }
 
@@ -82,7 +91,13 @@ class AuthController extends Controller
         // 로그아웃 후 리다이렉트
         return redirect()->to('/');
         */
+        
         // 240623 kerstie
-        return $this->response->setJSON(['message' => 'Logged out successfully.']);
+        //return $this->response->setJSON(['message' => 'Logged out successfully.']);
+
+        // 240625 kerstie
+        setcookie('jwt', '', time() - 3600, '/', '', true, true);
+        return redirect()->to('/login');
+
     }
 }

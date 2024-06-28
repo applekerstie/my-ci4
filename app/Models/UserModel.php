@@ -65,8 +65,13 @@ class UserModel extends Model
 
     // 240623 kerstie
     // JWT 검증 메서드
-    public function verifyJWT($token)
-    {
+    //public function verifyJWT($token)
+
+    // 240625 kerstie
+    public function verifyJWT()
+    {   
+        // 240625 kerstie
+        /*
         $config = config('JWT');
 
         try {
@@ -75,6 +80,20 @@ class UserModel extends Model
         } catch (\Exception $e) {
             return null;
         }
+        */
+        if( isset($_COOKIE['jwt']) ){
+          $token = $_COOKIE['jwt'];
+
+          $config = config('JWT');
+          try {
+              $decoded = JWT::decode($token, new Key($config->key, 'HS256'));
+              return (array) $decoded->data;
+          } catch (\Exception $e) {
+              return null;
+          }
+        }
+
+        return null;
     }
 
 }

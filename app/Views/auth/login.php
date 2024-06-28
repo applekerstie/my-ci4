@@ -22,6 +22,8 @@
     </form>
     */ ?>
 
+    <?php /*
+    // 240625 kerstie
     <form id="loginForm" action="/login/auth" method="post">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required>
@@ -49,6 +51,18 @@
             });
         });
     </script>
+    */ ?>
+
+    <?php if(session()->getFlashdata('error')): ?>
+        <div><?= session()->getFlashdata('error') ?></div>
+    <?php endif; ?>
+    <form action="/login/auth" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
 
 </body>
 </html>
