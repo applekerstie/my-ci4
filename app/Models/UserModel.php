@@ -4,9 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+/*
 // 240623 kerstie
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+*/
 
 class UserModel extends Model
 {
@@ -43,6 +45,7 @@ class UserModel extends Model
         return null;
     }
 
+    /*
     // 240623 kerstie
     // JWT 생성 메서드
     public function createJWT($user)
@@ -65,22 +68,8 @@ class UserModel extends Model
 
     // 240623 kerstie
     // JWT 검증 메서드
-    //public function verifyJWT($token)
-
-    // 240625 kerstie
     public function verifyJWT()
     {   
-        // 240625 kerstie
-        /*
-        $config = config('JWT');
-
-        try {
-            $decoded = JWT::decode($token, new Key($config->key, 'HS256'));
-            return (array) $decoded->data;
-        } catch (\Exception $e) {
-            return null;
-        }
-        */
         if( isset($_COOKIE['jwt']) ){
           $token = $_COOKIE['jwt'];
 
@@ -95,5 +84,6 @@ class UserModel extends Model
 
         return null;
     }
+    */
 
 }

@@ -7,13 +7,11 @@
     <h1>Posts</h1>
     <a href="/posts/create">Create Post</a>
     <!-- // 240623 kerstie -->
-    <!--<a href="/logout">logout</a>-->
+    <a href="/logout">logout</a>
 
     <!-- // 240625 kerstie
     <button id="logoutButton">Logout</button>
     -->
-
-    <a href="/logout">logout</a>
 
     <ul>
         <?php foreach ($posts as $post): ?>

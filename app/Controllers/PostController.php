@@ -29,12 +29,19 @@ class PostController extends Controller
 
         
         // 240625 kerstie
+        /*
         $userModel = new \App\Models\UserModel();
         $userData = $userModel->verifyJWT();
         if (!$userData) {
             return redirect()->to('/login')->with('error', '로그인이 필요합니다.');
         }
+        */
 
+        $session = session();
+        echo "Session ID: " . session_id() ."<br>";
+        echo "session user_id: ". $session->get('user_id') ."<br>";
+        echo "session username: ". $session->get('username') ."<br>";
+  
 
         $query = $this->db->query('SELECT * FROM posts');
 

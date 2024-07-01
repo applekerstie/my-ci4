@@ -65,7 +65,7 @@ class Session extends BaseConfig
      * IMPORTANT: You are REQUIRED to set a valid save path!
      */
     // 240621 kerstie
-    public $savePath = 'tcp://172.17.0.4:6379'; // Redis 주소와 포트 설정
+    public $savePath = 'tcp://172.17.0.2:6379'; // Redis 주소와 포트 설정
 
     //public string $savePath = WRITEPATH . 'session';
     //public string $savePath = 'ci_sessions';
